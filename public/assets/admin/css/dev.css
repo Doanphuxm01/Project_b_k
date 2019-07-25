@@ -1,0 +1,24 @@
+{
+	margin:0;
+	padding: 0;
+}
+td{
+	text-align: center;
+}
+img.imge_ex{
+	-webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  cursor: pointer;
+}
+img.imge_ex:hover{
+  -webkit-transform: scale(1.0);
+  transform: scale(1.2);
+}
+.animation{
+		animation-duration: 1s; /*// thời gian chuyển động của animation*/
+		animation-fill-mode: flip;
+		animation-name: doanphu;
+	}	
+/*login css*/
