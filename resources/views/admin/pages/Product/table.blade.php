@@ -9,10 +9,12 @@
     <div class="row">
       <div class="col-md-8">
         <table id="datatable paginationWrapper" class="table table-hover table-bordered table-striped">
+          <h3 style="text-align: center;">Danh sách kho sách </h3>
             <thead>
               <tr>
                 <th scope="col ">ID</th>
                 <th scope="col">tên sách </th>
+                <th scope="col">loại sách </th>
                 <th scope="col">chi tiết </th>
                 <th scope="col">tác giả </th>
                 <th scope="col">hành động </th>
@@ -25,6 +27,7 @@
       </div>
       <div class="col-md-4">
         <form >
+           <h3 style="text-align: center;">Action</h3>
           <div class="form-group myid">
             <label>ID</label>
             <input type="number" id="id" class="form-control" readonly="readonly">
@@ -34,6 +37,14 @@
             <input type="text" id="name" class="form-control">
             <span id="error" class="error mt-2 d-lg-block w-100" style="font-size: 14px; margin-left: 18px; color: #ff7675!important;"></span>
           </div>
+          {{-- loaij sach  --}}
+           {{--  <div>
+              <label>loại sách</label>
+              <select name="idbook" id="">
+                @foreach()
+              </select>
+            </div> --}}
+          {{-- end loai sach --}}
           <div class="form-group">
             <label>chi tiết </label>
             <textarea id="detail" class="form-control"></textarea>
