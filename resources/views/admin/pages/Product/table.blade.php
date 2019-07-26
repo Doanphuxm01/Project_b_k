@@ -171,12 +171,13 @@
     function updateData(){
       var id = $('#id').val();
       var name = $('#name').val();
+      var booktype = $('#booktype').val();
       var detail = $('#detail').val();
       var author = $('#author').val();
       $.ajax({
         type: "PUT",
         dataType: "json",
-        data: {name:name,detail:detail,author:author},
+        data: {name:name,id_book:booktype,detail:detail,author:author},
         url : 'adminview/cruds/'+id,
         success:function(response){
            toastr.success(response.success, 'Thông báo', {timeOut: 2000});
