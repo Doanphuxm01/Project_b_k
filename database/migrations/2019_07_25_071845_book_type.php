@@ -13,8 +13,8 @@ class BookType extends Migration
      */
     public function up()
     {
-         Schema::create('books', function (Blueprint $table) {
-            $table->bigIncrements('id');
+         Schema::create('book', function (Blueprint $table) {
+            $table->Increments('id');
             $table->string('booktype');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class BookType extends Migration
     public function down()
     {
         //
-         Schema::dropIfExists('books');
+         Schema::dropIfExists('book');
     }
 }

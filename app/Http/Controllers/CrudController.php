@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\BookType;
 use App\Http\Requests\PostRequest;
 
 class CrudController extends Controller
@@ -23,7 +24,7 @@ class CrudController extends Controller
 
 
 
-         $posts = Post::all();
+        $posts = Post::all();
         return Response()->json($posts);
 
     }

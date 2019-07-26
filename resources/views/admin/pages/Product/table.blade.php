@@ -38,12 +38,13 @@
             <span id="error" class="error mt-2 d-lg-block w-100" style="font-size: 14px; margin-left: 18px; color: #ff7675!important;"></span>
           </div>
           {{-- loaij sach  --}}
-           {{--  <div>
+            <div class="form-group">
               <label>loại sách</label>
-              <select name="idbook" id="">
-                @foreach()
-              </select>
-            </div> --}}
+             {{--  <select name="idbook" id="">
+               
+               
+              </select> --}}
+            </div>
           {{-- end loai sach --}}
           <div class="form-group">
             <label>chi tiết </label>
