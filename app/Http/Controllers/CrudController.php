@@ -9,8 +9,12 @@ use App\Http\Requests\PostRequest;
 
 class CrudController extends Controller
 {
-    public function __construct() {
+    // protected $post;
+    // protected $book;
+    public function __construct(Post $post , BookType $book) {
         $this->middleware('auth');
+        // $this->Post = $post;
+        // $this->book = $book;
     }
     /**
      * Display a listing of the resource.
@@ -21,12 +25,15 @@ class CrudController extends Controller
     {
         // $book=$Post->ShowPost();
         // return Response()->json($posts);
-
-
-
         $posts = Post::all();
-        return Response()->json($posts);
+        // $book = BookType::all();
+        // $post = Post::find(1)->booktype->toArray();
 
+        // $book = $post->booktype->toArray();
+        $book = BookType::all();
+        // var_dump($book);
+        return Response()->json(['post'=>$posts,'book'=>$book]);
+        // return response()->json(['Post' => $post,'BookType' => $book]);
     }
 
     /**
@@ -36,7 +43,8 @@ class CrudController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.Product.table');
+        $book = BookType::all();
+        return view('admin.pages.Product.table', compact('book'));
     }
 
     /**

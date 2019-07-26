@@ -40,10 +40,12 @@
           {{-- loaij sach  --}}
             <div class="form-group">
               <label>loại sách</label>
-             {{--  <select name="idbook" id="">
-               
-               
-              </select> --}}
+              <select  id="booktype" class="browser-default custom-select">
+                <option selected>chọn loại sách</option>
+                @foreach($book as $key)
+                  <option value="{{ $key->id }}">{{ $key->booktype }}</option>
+                @endforeach
+              </select>
             </div>
           {{-- end loai sach --}}
           <div class="form-group">
@@ -83,11 +85,18 @@
         dataType: "json",
         url: "adminview/cruds",
         success:function(response){
+          // console.log(response);
           var rows = "";
-          $.each(response,function(key,value){
+          $.each(response.post,function(key,value){
+            // console.log(value);
+            var book = response.book.filter(function(check){
+              return check.id == value.id_book;
+            });
+            // console.log(book[0]);
             rows = rows + "<tr>";
               rows = rows + "<td>"+value.id+"</td>";
               rows = rows + "<td>"+value.name+"</td>";
+              rows = rows + "<td>"+book[0].booktype+"</td>";
               rows = rows + "<td>"+value.detail+"</td>";
               rows = rows + "<td>"+value.author+"</td>";
               rows = rows + "<td width='200'>";
@@ -101,20 +110,22 @@
       })
     }
     viewData();
+    console.log(viewData());
   function saveData(){
       $('#error').hide();
       $('#error2').hide();
       $('#error3').hide();
       var name = $('#name').val();
+      var booktype = $('#booktype').val();
       var detail = $('#detail').val();
       var author = $('#author').val();
       $.ajax({
         type: 'POST',
         dataType:'json',
-        data: {name:name,detail:detail,author:author},
+        data: {name:name,id_book:booktype,detail:detail,author:author},
         url: "adminview/cruds",
         success:function(response){
-          toastr.success(response.success, 'Thông báo', {timeOut: 8000});
+          toastr.success(response.success, 'Thông báo', {timeOut: 2000});
           viewData();
           ClearData();
           $('#save').show();
@@ -168,7 +179,7 @@
         data: {name:name,detail:detail,author:author},
         url : 'adminview/cruds/'+id,
         success:function(response){
-           toastr.success(response.success, 'Thông báo', {timeOut: 8000});
+           toastr.success(response.success, 'Thông báo', {timeOut: 2000});
           viewData();
           ClearData();
           $('#save').show();
@@ -184,7 +195,7 @@
         dataType:"json",
         url: "adminview/cruds/"+ id,
         success:function(response){
-          toastr.success(response.success, 'Thông báo', {timeOut: 8000});
+          toastr.success(response.success, 'Thông báo', {timeOut: 2000});
           viewData();
         }
       })

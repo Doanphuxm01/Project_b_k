@@ -7,6 +7,10 @@ class Post extends Model
 {
     protected $table = 'posts';
     protected $fillable =[
-    	'name','detail','author',
+    	'name','detail','author','id_book'
     ];
+
+    function booktype(){
+    	return $this->belongsTo('App\BookType', 'id_book','id');
+    }
 }

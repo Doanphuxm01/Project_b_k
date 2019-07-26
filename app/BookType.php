@@ -11,4 +11,8 @@ class BookType extends Model
     protected $fillable =[
     	'booktype'
     ];
+
+    function post(){
+    	return $this->hasMany('App\BookType', 'id_book','id');
+    }
 }
