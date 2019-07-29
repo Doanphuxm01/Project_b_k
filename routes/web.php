@@ -20,6 +20,7 @@ Route::get('/', function () {
 // Route::resource('posts','PostController');
 Route::group(['prefix'=>'/adminview','middleware'=>'adminLogin'],function(){
 	Route::get('','CrudController@create');
+	Route::get('search','CrudController@search');
 	Route::resource('cruds','CrudController');
 	Route::resource('booktype','BookTypeControll');
 });

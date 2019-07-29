@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\BookType;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
@@ -23,19 +24,18 @@ class CrudController extends Controller
      */
     public function index(Request $request)
     {
-        // $book=$Post->ShowPost();
-        // return Response()->json($posts);
         $posts = Post::all();
-        // $book = BookType::all();
-        // $post = Post::find(1)->booktype->toArray();
-
-        // $book = $post->booktype->toArray();
         $book = BookType::all();
-        // var_dump($book);
+        // $data = Post::select("name")->where("id","LIKE","%{$request->input('query')}%")->get();
         return Response()->json(['post'=>$posts,'book'=>$book]);
-        // return response()->json(['Post' => $post,'BookType' => $book]);
     }
 
+    public function search(Request $request){
+        $search = $request->get('search');
+        $posts = Post::where('name','like','%'.$search.'%')->get();
+        return view('admin.pages.search.search',['posts'=> $posts]);
+        // return response()->json(['book'=> $book]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,6 +44,7 @@ class CrudController extends Controller
     public function create()
     {
         $book = BookType::all();
+        // $book = BookType::paginate(4);
         return view('admin.pages.Product.table', compact('book'));
     }
 
@@ -56,7 +57,7 @@ class CrudController extends Controller
     public function store(PostRequest $request)
     {
         $posts = Post::create($request->all());
-        return response()->json([$posts,'success'=>'add success']);
+        return response()->json([$posts,'success'=>'thêm thành công']);
 
     }
 
@@ -94,7 +95,7 @@ class CrudController extends Controller
     {
        
         $post = Post::find($id)->update($request->all());
-        return response()->json([$post,'success'=>'edit success ']);
+        return response()->json([$post,'success'=>'sửa thành công ']);
     }
 
     /**

@@ -11,6 +11,8 @@
   <base href="{{ asset('') }}">
   <!-- Custom fonts for this template-->
   <link href="assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <script src="assets/admin/js/typeahead.jquery.js"></script>
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script> --}}
   <link href="assets/admin/css/font-sbadmin.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="assets/admin/css/sb-admin-2.min.css" rel="stylesheet">

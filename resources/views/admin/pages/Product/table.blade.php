@@ -6,7 +6,17 @@
 
 @section('content')
   <div class="container">
-    <div class="row">
+    <div class="col-md-4">
+      <form action="adminview/search" method="get">
+          <div class="input-group">
+            <input  type="search" name="search" class="form-control">
+            <span class="input-group-prepernd">
+              <button type="submit" class="btn btn-success ">tìm kiếm</button>
+            </span>
+          </div>
+      </form>
+    </div>
+    <div class="row " id="hide">
       <div class="col-md-8">
         <table id="datatable paginationWrapper" class="table table-hover table-bordered table-striped">
           <h3 style="text-align: center;">Danh sách kho sách </h3>
@@ -21,9 +31,7 @@
               </tr>
             </thead>
             <tbody></tbody>
-           {{--   {{ $post->links() }} --}}
         </table>
-         
       </div>
       <div class="col-md-4">
         <form >
@@ -42,9 +50,9 @@
               <label>loại sách</label>
               <select  id="booktype" class="browser-default custom-select">
                 <option selected>chọn loại sách</option>
-                @foreach($book as $key)
-                  <option value="{{ $key->id }}">{{ $key->booktype }}</option>
-                @endforeach
+                  @foreach($book as $key)
+                    <option value="{{ $key->id }}">{{ $key->booktype }}</option>
+                  @endforeach
               </select>
             </div>
           {{-- end loai sach --}}
@@ -110,7 +118,7 @@
       })
     }
     viewData();
-    console.log(viewData());
+    // console.log(viewData());
   function saveData(){
       $('#error').hide();
       $('#error2').hide();
@@ -141,7 +149,7 @@
             $('#error2').text(error.errors.detail);
             $('#error3').text(error.errors.author);
            
-   }
+      }
       })
     }
     function ClearData(){
@@ -201,23 +209,24 @@
         }
       })
     }
-    // ajax phan trang 
-    $('.pagination a').unbind('click').on('click', function(e) {
-             e.preventDefault();
-             var page = $(this).attr('href').split('page=')[1];
-             getPosts(page);
-       });
-       function getPosts(page)
-       {
-            $.ajax({
-                 type: "GET",
-                 url: '?page='+ page
-            })
-            .success(function(data) {
-                 $('body').html(data);
-            });
-       }
-        // $(".ajaxtable").ajaxtable();
-        // $('ajaxtable').ajaxtable({ requestUrl : 'table.blade.php'});
+    // search
+    $('#search').on('click',function(response){
+      response.preventDefault();
+      $('#input_search').hide();
+       var input_search = $('#input_search').val();
+      $.ajax({
+        type:"get",
+        dataType:"json",
+        data: {input_search:input_search},
+        url:"adminview/search",
+        success:function(response){
+          // console.log(response.book[1]);
+          $("#input_search").html(response);
+          $('#input_search').show();
+          viewData();
+          ClearData();
+        }
+      })
+    })
 </script>
 @endsection

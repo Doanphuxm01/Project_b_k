@@ -17,8 +17,6 @@ class BookTypeControll extends Controller
 
     public function index()
     {
-        
-
         $books = BookType::all();
         return Response()->json($books);
 
@@ -32,7 +30,11 @@ class BookTypeControll extends Controller
     public function create()
     {
         //
-        return view('admin.pages.Booktype.booktype');
+         // $books = BookType::all()->paginate(4);
+        // BookType::where('user_id', Auth::id())->paginate(4);
+         // $book = BookType::paginate(6);
+         // dd($book);
+        return view('admin.pages.Booktype.booktype',compact('book'));
     }
 
     /**
