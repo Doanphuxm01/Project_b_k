@@ -11,6 +11,7 @@
   <base href="{{ asset('') }}">
   <!-- Custom fonts for this template-->
   <link href="assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" type="image/png" href="{{ asset('assets/admin/img/favicon/dehalogo.png') }}"/>
   <link href="assets/admin/css/font-sbadmin.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
