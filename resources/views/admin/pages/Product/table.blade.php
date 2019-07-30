@@ -209,6 +209,5 @@
         }
       })
     }
-
 </script>
 @endsection
