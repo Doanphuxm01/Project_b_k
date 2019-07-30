@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('show')
+@section('title')
 
 @endsection
 
@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-11">
         <table id="datatable paginationWrapper" class="table table-hover table-bordered table-striped">
-          <h3 style="text-align: center;">Danh sách kho sách </h3>
+          <h3 style="text-align: center;">Danh sách tìm kiếm  </h3>
             <thead>
               <tr>
                 <th scope="col ">ID</th>

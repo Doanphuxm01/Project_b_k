@@ -14,8 +14,6 @@ class CrudController extends Controller
     // protected $book;
     public function __construct(Post $post , BookType $book) {
         $this->middleware('auth');
-        // $this->Post = $post;
-        // $this->book = $book;
     }
     /**
      * Display a listing of the resource.
@@ -26,15 +24,22 @@ class CrudController extends Controller
     {
         $posts = Post::all();
         $book = BookType::all();
-        // $data = Post::select("name")->where("id","LIKE","%{$request->input('query')}%")->get();
         return Response()->json(['post'=>$posts,'book'=>$book]);
     }
 
     public function search(Request $request){
         $search = $request->get('search');
-        $posts = Post::where('name','like','%'.$search.'%')->get();
+        $posts = Post::where('name','like','%'.$search.'%')
+                    // orwhere('id_book','like','%'.$search.'%')
+                ->get();
         return view('admin.pages.search.search',['posts'=> $posts]);
-        // return response()->json(['book'=> $book]);
+    }
+    public function searchajax(Request $request){
+        $search = $request->get('search');
+        $posts = Post::where('name','like','%'.$search.'%')->get();
+        dd($posts);
+        return Response()->json(['post'=>$posts]);
+
     }
     /**
      * Show the form for creating a new resource.
@@ -44,7 +49,6 @@ class CrudController extends Controller
     public function create()
     {
         $book = BookType::all();
-        // $book = BookType::paginate(4);
         return view('admin.pages.Product.table', compact('book'));
     }
 

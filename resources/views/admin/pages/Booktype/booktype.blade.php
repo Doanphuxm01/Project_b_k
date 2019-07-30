@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-
+  thể loại 
 @endsection
 
 @section('content')

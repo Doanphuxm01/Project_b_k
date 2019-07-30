@@ -1,24 +1,10 @@
 @extends('admin.layouts.master')
 
 @section('title')
-danh sách 
 @endsection
 
 @section('content')
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form class="input" action="adminview/search" method="get">
-          <input name="search" type="search" class="textbox" placeholder="Search">
-          <input title="Search" value="tìm" type="submit" class="button">
-        </form>
-      {{-- <form class="input" action="adminview/search" method="POST"> --}}
-        <input id="search_deha" name="search" type="search" class="textbox input" placeholder="ajax">
-        <input title="Search" value="tìm" type="button" class="button button_2">
-      {{-- </form> --}}
-      {{-- end  search  --}}
-    </div>
-    </div>
     <div style="margin-top:25px" class="row" id="hide">
       <div class="col-md-8">
         <table id="datatable paginationWrapper" class="table table-hover table-bordered table-striped">
@@ -212,34 +198,5 @@ danh sách
         }
       })
     }
-    $('.button_2').on('click',function(){
-      var search_deha = $('#search_deha').val();
-      $.ajax({
-        type:"get",
-        dataType:"json",
-        url: "adminview/searchajax?search="+search_deha,
-        data:{name:search_deha},
-        success:function(response){
-           var rows = "";
-          $.each(response.posts,function(key,value){
-            rows = rows + "<tr>";
-              rows = rows + "<td>"+value.id+"</td>";
-              rows = rows + "<td>"+value.name+"</td>";
-              rows = rows + "<td>"+value.detail+"</td>";
-              rows = rows + "<td>"+value.author+"</td>";
-              rows = rows + "<td width='200'>";
-              rows = rows + "<button type='button' class='btn btn-info'  onclick='editData("+value.id+")'>sửa</button>";
-              rows = rows + "<button type='button' style='margin-left: 36px' class='btn btn-danger' onclick='deleteData("+value.id+")'>xóa</button>";
-              rows = rows + "</td>";
-            rows = rows + "</tr>";
-          });
-          $('tbody').html(rows);
-          toastr.success(response.success, 'Thông báo', {timeOut: 2000});
-          viewData();
-          ClearData();
-
-        }
-      })
-    })
 </script>
 @endsection

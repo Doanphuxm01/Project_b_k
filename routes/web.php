@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::group(['prefix'=>'/adminview','middleware'=>'adminLogin'],function(){
 	Route::get('','CrudController@create');
 	Route::get('search','CrudController@search');
+	Route::post('searchajax','CrudController@searchajax');
 	Route::resource('cruds','CrudController');
 	Route::resource('booktype','BookTypeControll');
 });
