@@ -193,7 +193,5 @@
                  $('body').html(data);
             });
        }
-        // $(".ajaxtable").ajaxtable();
-        // $('ajaxtable').ajaxtable({ requestUrl : 'table.blade.php'});
 </script>
 @endsection

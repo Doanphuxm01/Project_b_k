@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Login</title>
+	<title>login</title>
 	<link rel="stylesheet" href="assets/admin/css/login.css">
+	<link rel="shortcut icon" type="image/png" href="{{ asset('assets/admin/img/favicon/dehalogo.png') }}"/>
 	<link href="assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
