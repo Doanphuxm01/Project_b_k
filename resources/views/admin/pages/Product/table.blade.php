@@ -215,13 +215,14 @@ danh sách
     $('.button_2').on('click',function(){
       var search_deha = $('#search_deha').val();
       $.ajax({
-        type:"get",
+        type:"post",
         dataType:"json",
-        url: "adminview/searchajax?search="+search_deha,
+        url:"adminview/searchajax?search="+search_deha,
         data:{name:search_deha},
         success:function(response){
            var rows = "";
-          $.each(response.posts,function(key,value){
+           // console.log(response);
+          $.each(response,function(key,value){
             rows = rows + "<tr>";
               rows = rows + "<td>"+value.id+"</td>";
               rows = rows + "<td>"+value.name+"</td>";

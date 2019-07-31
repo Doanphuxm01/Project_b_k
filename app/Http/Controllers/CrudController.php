@@ -36,8 +36,9 @@ class CrudController extends Controller
     }
     public function searchajax(Request $request){
         $search = $request->get('search');
+        // dd($search);
         $posts = Post::where('name','like','%'.$search.'%')->get();
-        dd($posts);
+        // dd($posts);
         return Response()->json(['post'=>$posts]);
 
     }
