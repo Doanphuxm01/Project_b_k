@@ -16,8 +16,6 @@ Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/admin','PostController@index');
-// Route::resource('posts','PostController');
 Route::group(['prefix'=>'/adminview','middleware'=>'adminLogin'],function(){
 	Route::get('','CrudController@create');
 	Route::get('search','CrudController@search');

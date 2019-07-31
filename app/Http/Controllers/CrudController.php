@@ -30,24 +30,12 @@ class CrudController extends Controller
     public function search(Request $request){
         $search = $request->get('search');
         $posts = Post::where('name','like','%'.$search.'%')
-                    // orwhere('id_book','like','%'.$search.'%')
                 ->get();
         return view('admin.pages.search.search',['posts'=> $posts]);
     }
     public function searchajax(Request $request){
         $search = $request->get('search');
         $posts = Post::where('name','like','%'.$search.'%')->get();
-        // dd($posts);
-        // if ($posts) {
-        //         foreach ($posts as $key => $posts) {
-        //             $output .= '<tr>
-        //             <td>' . $posts->id . '</td>
-        //             <td>' . $posts->name . '</td>
-        //             <td>' . $posts->detail . '</td>
-        //             <td>' . $posts->author . '</td>
-        //             </tr>';
-        //         }
-        //  }
         return Response()->json(['post'=>$posts]);
 
     }
