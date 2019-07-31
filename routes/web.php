@@ -10,27 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use App\Post;
 
 Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/admin','PostController@index');
-// Route::resource('posts','PostController');
-Route::group(['prefix'=>'/adminview','middleware'=>'adminLogin'],function(){
-	Route::get('','CrudController@create');
-	Route::get('search','CrudController@search');
-	Route::post('searchajax','CrudController@searchajax');
-	Route::resource('cruds','CrudController');
-	Route::resource('booktype','BookTypeControll');
+Route::group(['prefix' => '/adminview', 'middleware' => 'adminLogin'], function () {
+    Route::get('', 'CrudController@create');
+    Route::get('search', 'CrudController@search');
+    Route::post('searchajax', 'CrudController@searchajax');
+    Route::resource('cruds', 'CrudController');
+    Route::resource('booktype', 'BookTypeControll');
 });
-Route::get('login','LoginController@getlogin')->name('getlogin');
+Route::get('login', 'LoginController@getlogin')->name('getlogin');
 Route::post('login', 'LoginController@postLogin')->name('postLogin');
-Route::get('logout','LoginController@getlogout')->name('namelogin');
-
-Route::get('thu', function(){
-	$post = Post::find(1)->booktype->toArray();
-
-	var_dump($post);
-});
+Route::get('logout', 'LoginController@getlogout')->name('namelogin');
