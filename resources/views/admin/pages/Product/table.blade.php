@@ -33,7 +33,18 @@ danh sách
                 <th scope="col">hành động </th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {{--  @if ($posts)
+                                    @foreach ($posts as $product)
+                                        <tr>
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->detail}}</td>
+                                            <td>{{$product->author}}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif --}}
+            </tbody>
         </table>
       </div>
       <div class="col-md-4">
@@ -215,29 +226,28 @@ danh sách
     $('.button_2').on('click',function(){
       var search_deha = $('#search_deha').val();
       $.ajax({
-        type:"get",
+        type:"post",
         dataType:"json",
         url: "adminview/searchajax?search="+search_deha,
         data:{name:search_deha},
         success:function(response){
-           var rows = "";
-          $.each(response.posts,function(key,value){
+          var rows = "";
+          $.each(response,function(key,value){
             rows = rows + "<tr>";
               rows = rows + "<td>"+value.id+"</td>";
               rows = rows + "<td>"+value.name+"</td>";
               rows = rows + "<td>"+value.detail+"</td>";
               rows = rows + "<td>"+value.author+"</td>";
               rows = rows + "<td width='200'>";
-              rows = rows + "<button type='button' class='btn btn-info'  onclick='editData("+value.id+")'>sửa</button>";
-              rows = rows + "<button type='button' style='margin-left: 36px' class='btn btn-danger' onclick='deleteData("+value.id+")'>xóa</button>";
+              rows = rows + "<button type='button' class='btn btn-info'  onclick='editData("+value.id+")'>edit</button>";
+              rows = rows + "<button type='button' style='margin-left: 36px' class='btn btn-danger' onclick='deleteData("+value.id+")'>delete</button>";
               rows = rows + "</td>";
             rows = rows + "</tr>";
           });
           $('tbody').html(rows);
-          toastr.success(response.success, 'Thông báo', {timeOut: 2000});
+           toastr.success(response.success, 'Thông báo', {timeOut: 2000});
           viewData();
           ClearData();
-
         }
       })
     })
