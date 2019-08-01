@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class CrudController extends Controller
 {
-    // protected $post;
-    // protected $book;
-    public function __construct(Post $post , BookType $book) {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,23 +19,18 @@ class CrudController extends Controller
     {
         $posts = Post::all();
         $book = BookType::all();
-        return Response()->json(['post'=>$posts,'book'=>$book]);
-    }
-
-    public function search(Request $request){
-        $search = $request->get('search');
-        $posts = Post::where('name','like','%'.$search.'%')
-                ->get();
-        return view('admin.pages.search.search',['posts'=> $posts]);
-    }
-    public function searchajax(Request $request){
-        $search = $request->get('search');
+        return view('admin.pages.Product.table',['posts' => $posts,'book' => $book]);
        
-        $posts = Post::where('name','like','%'.$search.'%')->get();
-        
-        return Response()->json(['post'=>$posts]);
-
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $posts = Post::where('name', 'like', '%' . $search . '%')
+            ->get();
+        return view('admin.pages.search.search', ['posts' => $posts]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,27 +38,30 @@ class CrudController extends Controller
      */
     public function create()
     {
+        $posts = Post::all();
         $book = BookType::all();
-        return view('admin.pages.Product.table', compact('book'));
+        return Response()->json(['post' => $posts, 'book' => $book]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
     {
-        $posts = Post::create($request->all());
-        return response()->json([$posts,'success'=>'thêm thành công']);
+        $posts = Post::all();
+        $book = BookType::all();
+        // $posts = Post::create($request->all());
+        return response()->json([$posts, 'success' => 'thêm thành công']);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -79,38 +72,38 @@ class CrudController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $post= Post::find($id);
+        $post = Post::find($id);
         return response()->json($post);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-       
+
         $post = Post::find($id)->update($request->all());
-        return response()->json([$post,'success'=>'sửa thành công ']);
+        return response()->json([$post, 'success' => 'sửa thành công ']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Post::find($id)->delete();
-        return Response()->json(['success'=>'xóa thành công ']);
+        return Response()->json(['success' => 'xóa thành công ']);
     }
 }

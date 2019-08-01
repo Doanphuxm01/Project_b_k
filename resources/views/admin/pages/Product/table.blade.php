@@ -29,7 +29,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <td></td>
+                    <td>
+                        
+                    </td>
                     </tbody>
                 </table>
             </div>
@@ -92,7 +94,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "adminview/cruds",
+                url: "adminview/cruds/create",
                 success: function (response) {
                     var rows = "";
                     $.each(response.post, function (key, value) {

@@ -10,17 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-use App\Post;
-
 Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['prefix' => '/adminview', 'middleware' => 'adminLogin'], function () {
-    Route::get('', 'CrudController@create');
+    Route::get('', 'CrudController@index');
     Route::get('search', 'CrudController@search');
-    Route::post('searchajax', 'CrudController@searchajax');
     Route::resource('cruds', 'CrudController');
     Route::resource('booktype', 'BookTypeControll');
 });

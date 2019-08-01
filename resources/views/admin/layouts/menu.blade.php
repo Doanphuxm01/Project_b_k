@@ -37,7 +37,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('booktype.create') }}">loại sách</a>
-                <a class="collapse-item" href="{{ route('cruds.create') }}">Danh sách</a>
+                <a class="collapse-item" href="{{ route('cruds.index') }}">Danh sách</a>
             </div>
         </div>
     </li>
